@@ -1,19 +1,19 @@
-using CityBreaks.Web.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using CityBreaks.Web.Models;
 
-namespace CityBreaks.Web.Data.Configurations
+public class PropertyConfiguration : IEntityTypeConfiguration<Property>
 {
-    public class PropertyConfiguration : IEntityTypeConfiguration<Property>
+    public void Configure(EntityTypeBuilder<Property> builder)
     {
-        public void Configure(EntityTypeBuilder<Property> builder)
-        {
-            builder.Property(p => p.Name)
-                .HasMaxLength(150)
-                .HasColumnName("Property_Name");
+        builder.Property(p => p.Name)
+            .HasMaxLength(150)
+            .HasColumnName("Property_Name");
 
-            builder.Property(p => p.PricePerNight)
-                .HasColumnName("Price_Per_Night");
-        }
+        builder.HasData(
+            new Property { Id = 1, Name = "Hotel Paulista", PricePerNight = 250, CityId = 1 },
+            new Property { Id = 2, Name = "Copacabana Palace", PricePerNight = 500, CityId = 2 },
+            new Property { Id = 3, Name = "NY Downtown Loft", PricePerNight = 700, CityId = 3 }
+        );
     }
 }

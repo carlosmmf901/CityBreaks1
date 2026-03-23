@@ -12,8 +12,10 @@ namespace CityBreaks.Web.Data.Configurations
                 .HasMaxLength(100)
                 .HasColumnName("Country_Name");
 
-            builder.Property(c => c.CountryCode)
-                .HasColumnName("Country_Code");
+            builder.HasData(
+                new Country { Id = 1, CountryCode = "BR", CountryName = "Brazil" },
+                new Country { Id = 2, CountryCode = "US", CountryName = "United States" }
+            );
         }
     }
 }

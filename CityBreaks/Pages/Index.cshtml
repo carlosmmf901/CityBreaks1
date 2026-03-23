@@ -1,10 +1,23 @@
 ﻿@page
 @model IndexModel
-@{
-    ViewData["Title"] = "Home page";
-}
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h2>Cidades</h2>
+
+@foreach (var city in Model.Cities)
+{
+    <h3>@city.Name (@city.Country.CountryName)</h3>
+
+    <ul>
+        @foreach (var property in city.Properties)
+        {
+            <li>
+                @property.Name - R$ @property.PricePerNight
+            </li>
+        }
+    </ul>
+    
+    <a asp-page="/CityDetails" asp-route-name="@city.Name">
+        Ver detalhes
+    </a>
+    
+}

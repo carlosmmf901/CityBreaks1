@@ -1,0 +1,27 @@
+@page "{id:int}"
+@model EditPropertyModel
+
+<h2>Editar Propriedade</h2>
+
+<form method="post">
+    
+    <input type="hidden" asp-for="Property.Id" />
+
+    <div>
+        <label>Nome</label>
+        <input asp-for="Property.Name" />
+    </div>
+
+    <div>
+        <label>Preço</label>
+        <input asp-for="Property.PricePerNight" />
+    </div>
+
+    <div>
+        <label>Cidade</label>
+        <select asp-for="Property.CityId" asp-items="Model.Cities"></select>
+    </div>
+
+    <button type="submit">Salvar</button>
+
+</form>

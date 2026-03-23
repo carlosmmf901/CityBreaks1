@@ -27,7 +27,6 @@ namespace CityBreaks.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
                         .HasColumnType("TEXT")
                         .HasColumnName("City_Name");
 
@@ -36,6 +35,26 @@ namespace CityBreaks.Migrations
                     b.HasIndex("CountryId");
 
                     b.ToTable("Cities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CountryId = 1,
+                            Name = "São Paulo"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CountryId = 1,
+                            Name = "Rio de Janeiro"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CountryId = 2,
+                            Name = "New York"
+                        });
                 });
 
             modelBuilder.Entity("CityBreaks.Web.Models.Country", b =>
@@ -46,8 +65,7 @@ namespace CityBreaks.Migrations
 
                     b.Property<string>("CountryCode")
                         .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("Country_Code");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("CountryName")
                         .IsRequired()
@@ -58,6 +76,20 @@ namespace CityBreaks.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Countries");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CountryCode = "BR",
+                            CountryName = "Brazil"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CountryCode = "US",
+                            CountryName = "United States"
+                        });
                 });
 
             modelBuilder.Entity("CityBreaks.Web.Models.Property", b =>
@@ -76,14 +108,36 @@ namespace CityBreaks.Migrations
                         .HasColumnName("Property_Name");
 
                     b.Property<decimal>("PricePerNight")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("Price_Per_Night");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
 
                     b.ToTable("Properties");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CityId = 1,
+                            Name = "Hotel Paulista",
+                            PricePerNight = 250m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CityId = 2,
+                            Name = "Copacabana Palace",
+                            PricePerNight = 500m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CityId = 3,
+                            Name = "NY Downtown Loft",
+                            PricePerNight = 700m
+                        });
                 });
 
             modelBuilder.Entity("CityBreaks.Web.Models.City", b =>

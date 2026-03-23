@@ -1,0 +1,25 @@
+@page
+@model CreatePropertyModel
+
+<h2>Nova Propriedade</h2>
+
+<form method="post">
+    
+    <div>
+        <label>Nome</label>
+        <input asp-for="Property.Name" />
+    </div>
+
+    <div>
+        <label>Preço por noite</label>
+        <input asp-for="Property.PricePerNight" />
+    </div>
+
+    <div>
+        <label>Cidade</label>
+        <select asp-for="Property.CityId" asp-items="Model.Cities"></select>
+    </div>
+
+    <button type="submit">Salvar</button>
+
+</form>
