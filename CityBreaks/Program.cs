@@ -1,6 +1,5 @@
 using CityBreaks.Web.Data;
 using Microsoft.EntityFrameworkCore;
-using CityBreaks.Web.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,18 +24,5 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
-
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<CityBreaksContext>();
-
-    db.Countries.Add(new Country
-    {
-        CountryCode = "BR",
-        CountryName = "Brazil"
-    });
-
-    db.SaveChanges();
-}
 
 app.Run();
